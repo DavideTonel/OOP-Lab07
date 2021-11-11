@@ -1,6 +1,10 @@
 package it.unibo.oop.lab.anonymous1;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import it.unibo.oop.lab.socialnetwork.SocialNetworkUser;
@@ -75,6 +79,16 @@ public final class TestAnonymousComparator {
          * REFER TO LESSON 13-Advanced-Mechanisms.pdf, slide 41
          */
         // TODO
+        Collections.sort(denzelUsers, new Comparator<User>() {
+        	public int compare(User a, User b) {
+        		if (a.getAge() > b.getAge()) {
+        			return 1;
+        		} else if (a.getAge() < b.getAge()) {
+        			return -1;
+        		}
+        		return 0;
+        	}
+        });
         /*
          * expected Result
          */
@@ -88,6 +102,9 @@ public final class TestAnonymousComparator {
         System.out.println("[Order by age (increasing) Denzel friends] [TEST] [RESULT] "
                 + checkUserOrder(expectedResult, denzelUsers));
         System.out.println("[Order by age (increasing) Denzel friends] [TEST] [END]");
+        //test
+        assertEquals(expectedResult, denzelUsers);
+        
         /*
          * TEST on MARIO ROSSI
          */
@@ -106,6 +123,16 @@ public final class TestAnonymousComparator {
          * class Collections
          */
         // TODO
+        Collections.sort(rossiUsers, new Comparator<User>() {
+        	public int compare(User a, User b) {
+        		if (a.getAge() > b.getAge()) {
+        			return -1;
+        		} else if (a.getAge() < b.getAge()) {
+        			return 1;
+        		}
+        		return 0;
+        	}
+        });
         /*
          * expected Result
          */
@@ -119,5 +146,8 @@ public final class TestAnonymousComparator {
         System.out.println("[Order by age (decreasing) Rossi friends] [TEST] [RESULT] "
                 + checkUserOrder(expectedResult, rossiUsers));
         System.out.println("[Order by age (decreasing) Rossi friends] [TEST] [END]");
+        //test
+        assertEquals(expectedResult, rossiUsers);
+
     }
 }
